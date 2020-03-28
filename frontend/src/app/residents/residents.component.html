@@ -1,0 +1,22 @@
+
+
+
+
+
+<table class="table" style="margin-top: 1rem; margin-bottom: 1rem">
+  <tbody>
+    <tr>
+      <th>Name</th>
+      <th>Flat Number</th>
+      <th>Profession</th>
+      <th>Number of Residents</th>
+    </tr>
+    <tr *ngFor="let resident of residents">
+      <td>{{resident.firstname}} {{resident.lastname}}</td>
+      <td>{{resident.flat_number}}</td>
+      <td>{{resident.profession}}</td>
+      <td>{{resident.number_of_people}}</td>
+
+    </tr>
+  </tbody>
+</table>

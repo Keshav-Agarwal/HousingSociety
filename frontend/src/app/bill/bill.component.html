@@ -1,0 +1,14 @@
+<table class="table" style="margin-top: 1rem; margin-bottom: 1rem">
+
+  <tbody>
+  <tr>
+      <th scope="col">Category</th>
+      <th scope="col">Description</th>
+      <th scope="col">Amount</th>
+    </tr>
+    <tr *ngFor="let bil of bill">
+      <td>{{bil.category}}</td>
+      <td>{{bil.description}}</td>
+      <td>{{bil.amount}}</td>
+    </tr>
+</table>

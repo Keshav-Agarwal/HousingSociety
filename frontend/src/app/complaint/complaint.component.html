@@ -1,0 +1,38 @@
+<div *ngFor="let complaint of complaints">
+	<div *ngIf="complaint.isCompleted">
+		<div class="card text-white bg-success" style="margin-bottom: 1rem; margin-top: 1rem">
+			<div class="card-header">
+				{{complaint.title}}
+			</div>
+			<div class="card-body">
+				<h5 class="card-title">{{complaint.user}}</h5>
+				<h6>{{complaint.category}}</h6>
+				<br>
+				<p class="card-text">{{complaint.description}}</p>
+			</div>
+			<div class="card-footer text-white">
+				Complained on : {{complaint.time_published}}
+				<div *ngIf="complaint.isCompleted">Complaint closed : {{complaint.time_completed | date:'medium'}}</div>
+			</div>
+		</div>
+	</div>
+	<div *ngIf="!complaint.isCompleted">
+		<div class="card" style="margin-bottom: 1rem; margin-top: 1rem">
+			<div class="card-header">
+				{{complaint.title}}
+			</div>
+			<div class="card-body">
+				<h5 class="card-title">{{complaint.user}}</h5>
+				<h6>{{complaint.category}}</h6>
+				<br>
+				<p class="card-text">{{complaint.description}}</p>
+			</div>
+			<div class="card-footer text-white text-muted">
+				Complained on : {{complaint.time_published}}
+				<div *ngIf="complaint.isCompleted">Complaint closed : {{complaint.time_completed | date:'medium'}}</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--TODO
+date-->

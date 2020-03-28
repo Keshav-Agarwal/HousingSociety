@@ -1,0 +1,98 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col">
+			<div *ngIf="!apiService.token">
+				<div class="row">
+					<div class="col-4"></div>
+					<div class="col-4" style="margin-top: 5rem;">
+						<div class="row">
+							<div class="col-6"><label>Username:</label></div>
+							<div class="col-6"><input type="text" name="login-username" [(ngModel)]="user.username">
+								<span *ngFor="let error of apiService.errors.username"><br>
+								{{ error }}</span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-6"><label>Password:</label></div>
+							<div class="col-6"><input type="password" name="login-password" [(ngModel)]="user.password">
+								<span *ngFor="let error of apiService.errors.password"><br>
+								{{ error }}</span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12"><button (click)="login()" class="btn btn-primary">Log In</button></div>
+						</div>
+						<div class="row">
+							<div class="col-12"><span *ngFor="let error of apiService.errors.non_field_errors">{{ error }}<br /></span></div>
+						</div>
+					</div>
+					<div class="col-4"></div>
+				</div>
+			</div>
+			<div class="row" *ngIf="apiService.token">
+				<div class="col-2" style="background-color: #d17056; padding-bottom: 100%; font-weight: bold">
+					<nav class="sidebar" style="position: fixed;">
+						<div class="sidebar-sticky">
+							<ul class="nav flex-column">
+								<!--<li class="nav-item">
+									Loggedin As: <br>
+									<h5>resident.firstname and lastname here </h5>
+									<br>  Flat Number :{{resident.flat_number}}<br>{{resident.profession}}
+									</li>-->
+								<li class="nav-item">
+									<div class="nav-link active" (click)="residentButton1()">
+										<span data-feather="home"></span>
+										Home
+									</div>
+								</li>
+								<li class="nav-item">
+									<div class="nav-link" (click)="billButton()">
+										<span data-feather="file"></span>
+										Bill
+									</div>
+								</li>
+								<li class="nav-item">
+									<div class="nav-link" (click)="residentButton2()">
+										<span data-feather="shopping-cart"></span>
+										Resident
+									</div>
+								</li>
+								<li class="nav-item">
+									<div class="nav-link" (click)="complaintButton()">
+										<span data-feather="users"></span>
+										Complaint
+									</div>
+								</li>
+							</ul>
+							<h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+								<span>--------</span>
+							</h6>
+							<ul class="nav flex-column mb-2">
+								<li class="nav-item">
+									<div class="nav-link" (click)="logout()">
+										<span data-feather="file-text"></span>
+										Log Out
+									</div>
+								</li>
+							</ul>
+						</div>
+					</nav>
+				</div>
+				<div class="col-10">
+					<div *ngIf="isBill">
+						<app-bill></app-bill>
+					</div>
+					<div *ngIf="isComplaint">
+						<app-complaint></app-complaint>
+					</div>
+					<div *ngIf="isResidentById">
+						<app-notice></app-notice>
+					</div>
+					<div *ngIf="isResidentAll">
+						<app-residents></app-residents>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
