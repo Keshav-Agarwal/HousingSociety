@@ -1,17 +1,89 @@
+<div class="card" style="margin-bottom: 1rem; margin-top: 1rem; padding: 1rem">
+
+
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+
+
+
+                  <div class="row">
+                    <div class="col">
+                      <label for="title">Title</label>
+                    </div>
+                    <div class="col">
+                      <input formControlName="title" placeholder="Title (required)" id="title">
+                      <br>
+                      <div *ngIf="(myForm.controls.title.dirty || myForm.controls.title.touched) && myForm.controls.title.errors" class="alert alert-danger">
+                        Title is required.
+                        <br> Max length 250 characters.
+                        <br>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col">
+                      <label for="description">Description</label>
+                    </div>
+                    <div class="col">
+                      <textarea formControlName="description" placeholder="Description (required)" id="description"></textarea>
+                      <br>
+                      <div *ngIf="(myForm.controls.description.dirty || myForm.controls.description.touched) && myForm.controls.description.errors">
+                        Required
+                        Max length 1000 characters.
+                        <br>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col">
+                      <label for="category">Category</label>
+                    </div>
+                    <div class="col">
+                      <select formControlName="category" id="category">
+                        <option *ngFor="let category of categories" [value]="category.id">
+                          {{category.name}}
+                        </option>
+                      </select>
+                      <br>
+                      <div *ngIf="(myForm.controls.category.dirty || myForm.controls.category.touched) && myForm.controls.category.errors">
+                        Please Enter
+                        <br>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+
+
+
+
+
+                <div *ngIf="myForm.invalid && submitted"><b>Form invalid, please enter proper details.</b></div>
+                <span><button class="btn btn-primary" type="submit">Add Complaint</button></span>
+
+
+
+          </form>
+
+</div>
+
 <div *ngFor="let complaint of complaints">
+
 	<div *ngIf="complaint.isCompleted">
 		<div class="card text-white bg-success" style="margin-bottom: 1rem; margin-top: 1rem">
 			<div class="card-header">
 				{{complaint.title}}
 			</div>
 			<div class="card-body">
-				<h5 class="card-title">{{complaint.user}}</h5>
+				<h5 class="card-title">{{complaint.firstname}} {{complaint.lastname}} - {{complaint.flat_number}}</h5>
 				<h6>{{complaint.category}}</h6>
 				<br>
 				<p class="card-text">{{complaint.description}}</p>
 			</div>
 			<div class="card-footer text-white">
-				Complained on : {{complaint.time_published}}
+				Complained on : {{complaint.time_published | date:'medium'}}
 				<div *ngIf="complaint.isCompleted">Complaint closed : {{complaint.time_completed | date:'medium'}}</div>
 			</div>
 		</div>
@@ -22,17 +94,18 @@
 				{{complaint.title}}
 			</div>
 			<div class="card-body">
-				<h5 class="card-title">{{complaint.user}}</h5>
+				<h5 class="card-title">{{complaint.firstname}} {{complaint.lastname}} - {{complaint.flat_number}}</h5>
 				<h6>{{complaint.category}}</h6>
 				<br>
 				<p class="card-text">{{complaint.description}}</p>
 			</div>
 			<div class="card-footer text-white text-muted">
-				Complained on : {{complaint.time_published}}
+				Complained on : {{complaint.time_published | date:'medium'}}
 				<div *ngIf="complaint.isCompleted">Complaint closed : {{complaint.time_completed | date:'medium'}}</div>
 			</div>
 		</div>
 	</div>
+
 </div>
 <!--TODO
 date-->

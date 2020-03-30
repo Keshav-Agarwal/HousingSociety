@@ -46,6 +46,8 @@ class NoticeAPI(APIView):
         return Response(serializer.data)
 
 
+
+
 class ResidentAPI(APIView):
     def get(self, request, format=None, *args, **kwargs):
         if self.kwargs.get('pk'):

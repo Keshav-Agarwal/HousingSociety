@@ -14,10 +14,7 @@ export class BillComponent implements OnInit {
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
-    console.log("in Bill");
     this.apiService.getBillById(this.apiService.user_id).subscribe((res) => {
-      console.log("in bill in getallbill");
-      console.log(res);
       this.bill = res;
     });
   }

@@ -15,16 +15,12 @@ export class AppComponent implements OnInit {
   isComplaint = false;
   isResidentById = true;
   isResidentAll = false;
-  resident : any;
 
   ngOnInit() {
     this.user = {
       username: '',
       password: ''
     };
-
-
-
   }
 
   login() {

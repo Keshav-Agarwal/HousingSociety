@@ -13,7 +13,6 @@ export class NoticeComponent implements OnInit {
 
   ngOnInit(): void {
     this.apiService.getNotices().subscribe((res) => {
-      console.log("noticces", res);
         this.notices = res;
       });
   }

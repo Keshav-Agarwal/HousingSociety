@@ -20,7 +20,6 @@ export class ApiService {
   public username: string;
   public errors: any = [];
 
-
   apiURL: string = 'https://housingsocietyapi.herokuapp.com';
 
   constructor(private httpClient: HttpClient) {
@@ -57,6 +56,11 @@ export class ApiService {
     return this.httpClient.get<Notices[]>(`${this.apiURL}/noticeapi/`);
   }
 
+  public makeComplaint(complaint: Complaint) {
+    complaint.user = this.user_id;
+    complaint.time_completed = '2012-09-04 06:00:00.000000';
+    return this.httpClient.post(`${this.apiURL}/complaintapi/`, complaint);
+  }
 
   public login(user) {
     this.httpClient.post(`${this.apiURL}/api/token/`, JSON.stringify(user), this.httpOptions).subscribe(
